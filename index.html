@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fragebogen</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h1 class="styled-text">بسم الله الرَّحمن الرَّحیم</h1>
+    
+    <h2 class="fragen-text">Вопросы:</h2>
+    <form id="questionForm" action="/submit" method="post">
+        <label for="question1">1. Что для вас самое важное в браке?</label>
+        <textarea id="question1" name="question1" rows="4" required></textarea>
+
+        <label for="question2">Как вы представляете себе счастливую исламскую семью?</label>
+        <textarea id="question2" name="question2" rows="4" required></textarea>
+
+        <button type="submit">Absenden</button>
+    </form>
+</body>
+</html>
