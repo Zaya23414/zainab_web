@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular</title>
+    <link rel="stylesheet" href="styles-web.css">
+</head>
+<body>
+    <h1 class="styled-text">بسم الله الرَّحمن الرَّحیم</h1>
+    <div class="question-container">
+        <h2 class="fragen-text">Вопросы:</h2>
+        <form id="questionForm" action="http://localhost:4000/submit" method="post">
+            <label for="question1">1. Что для вас самое важное в браке?</label>
+            <textarea id="question1" name="question1" rows="4" required></textarea>
+
+            <label for="question2">2. Как вы представляете себе счастливую исламскую семью?</label>
+            <textarea id="question2" name="question2" rows="4" required></textarea>
+
+            <button type="submit">Отправить</button>
+        </form>
+        <div id="successMessage" class="success-message">
+            <span>✔️ Данные успешно отправлены!</span> <!-- Häkchen und Erfolgsmeldung -->
+        </div>
+    </div>
+    <script>
+        document.getElementById('questionForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            try {
+                const response = await fetch('http://localhost:4000/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams(new FormData(event.target))
+                });
+                const data = await response.text();
+                console.log('Antwort vom Server:', data);
+                // Erfolgsmeldung anzeigen
+                document.getElementById('successMessage').style.display = 'block';
+                console.log('Erfolgsmeldung angezeigt');
+            } catch (error) {
+                console.error('Fehler:', error);
+            }
+        });
+    </script>
+</body>
+</html>
